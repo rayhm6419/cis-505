@@ -1,5 +1,6 @@
 package GradeBookApp;
 
+import GradeBookApp.controller.*;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -24,10 +25,24 @@ public class LeiGradeBookApp extends Application {
         ComboBox<String> gradeComboBox = new ComboBox<>();
         gradeComboBox.getItems().addAll("A", "B", "C", "D", "F");
 
+        // Output display
+        TextArea outputArea = new TextArea();
+        outputArea.setEditable(false);
+        outputArea.setPrefHeight(120);
+
         // Buttons
         Button saveButton = new Button("Save Grade");
         Button clearButton = new Button("Clear Form");
         Button viewButton = new Button("View Grades");
+
+        // Create controller and wire buttons
+        gradeBookController controller = new gradeBookController(
+                firstNameField, lastNameField, courseField, gradeComboBox, outputArea
+        );
+
+        saveButton.setOnAction(e -> controller.handleSave());
+        clearButton.setOnAction(e -> controller.handleClear());
+        viewButton.setOnAction(e -> controller.handleView());
 
         // GridPane for form fields
         GridPane formGrid = new GridPane();
@@ -49,11 +64,11 @@ public class LeiGradeBookApp extends Application {
         buttonBox.setPadding(new Insets(10, 0, 0, 0));
 
         // VBox to hold everything
-        VBox root = new VBox(10, formGrid, buttonBox);
+        VBox root = new VBox(10, formGrid, buttonBox, outputArea);
         root.setPadding(new Insets(20));
 
         // Scene and Stage
-        Scene scene = new Scene(root, 400, 300);
+        Scene scene = new Scene(root, 450, 400);
         primaryStage.setTitle("Grade Book App");
         primaryStage.setScene(scene);
         primaryStage.show();
