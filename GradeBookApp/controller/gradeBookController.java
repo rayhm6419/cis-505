@@ -12,6 +12,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import GradeBookApp.model.student;
 
+
 public class gradeBookController {
     private static final String FILE_NAME = "grades.csv";
 
@@ -28,6 +29,31 @@ public class gradeBookController {
         this.courseField = courseField;
         this.gradeComboBox = gradeComboBox;
         this.outputArea = outputArea;
+    }
+        // Calculate average GPA from a list of students
+        public static double calculateGPA(List<student> students) {
+            double total = 0;
+            int count = 0;
+    
+            for (student s : students) {
+                switch (s.getGrade()) {
+                    case "A" -> total += 4.0;
+                    case "B" -> total += 3.0;
+                    case "C" -> total += 2.0;
+                    case "D" -> total += 1.0;
+                    case "F" -> total += 0.0;
+                }
+                count++;
+            }
+            return count > 0 ? total / count : 0.0;
+        }
+    
+        // Update an existing student's data with new values
+        public static void updateStudent(student original, student updated) {
+            original.setFirstName(updated.getFirstName());
+            original.setLastName(updated.getLastName());
+            original.setCourse(updated.getCourse());
+            original.setGrade(updated.getGrade());
     }
 
     public void handleSave() {
@@ -83,3 +109,4 @@ public class gradeBookController {
         gradeComboBox.getSelectionModel().clearSelection();
     }
 }
+

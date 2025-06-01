@@ -13,13 +13,47 @@ public class student {
         this.grade = grade;
     }
 
+    // Getters
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getCourse() {
+        return course;
+    }
+
+    public String getGrade() {
+        return grade;
+    }
+
+    // Setters
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setCourse(String course) {
+        this.course = course;
+    }
+
+    public void setGrade(String grade) {
+        this.grade = grade;
+    }
+
+    // Utility Methods
     public String toCSV() {
         return firstName + "," + lastName + "," + course + "," + grade;
     }
 
     @Override
     public String toString() {
-        return firstName + " " + lastName + " - " + course + " (" + grade + ")";
+        return firstName + " " + lastName + " – " + course + " (" + grade + ")";
     }
 }
-
